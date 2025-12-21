@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #16a34a;
+  --color-primary-hover: #15803d;
+  --color-accent: #d9f99d;
+  --color-background-light: #ffffff;
+  --color-background-dark: #0f172a;
+  --color-surface-light: #f8fafc;
+  --color-surface-dark: #1e293b;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-default: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+
+  /* Dashboard specific tokens from user snippet */
+  --color-dash-primary: #13ec5b;
+  --color-dash-background-light: #f8fafc;
+  --color-dash-background-dark: #102216;
+  --color-dash-surface-light: #ffffff;
+  --color-dash-surface-dark: #162b1e;
+  --color-dash-surface-highlight: #f1f5f9;
+  --color-dash-border-light: rgba(0, 0, 0, 0.05);
+  --color-dash-border-dark: rgba(255, 255, 255, 0.05);
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #16a34a, #84cc16);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom dashboard scrollbar */
+.dash-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+.dash-scrollbar::-webkit-scrollbar-track {
+    background: #f8fafc; 
+}
+.dash-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0; 
+    border-radius: 4px;
+}
+.dash-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1; 
+}
