@@ -5,6 +5,8 @@ export const metadata = {
   description: "Satu link simpel untuk semua kebutuhanmu. Cocok untuk jualan di Instagram, profil TikTok, portofolio kreator, atau kontak bisnis UMKM kamu.",
 };
 
+import { ToastProvider } from "@/context/ToastContext";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="id" suppressHydrationWarning>
@@ -15,7 +17,9 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background-light dark:bg-background-dark text-text-main dark:text-white font-display antialiased selection:bg-primary selection:text-text-main transition-colors duration-200">
-        {children}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
       </body>
     </html>
   );

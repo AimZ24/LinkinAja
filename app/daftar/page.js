@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Apple, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/context/ToastContext';
 
 export default function DaftarPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +11,8 @@ export default function DaftarPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const { showToast } = useToast();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -50,9 +54,12 @@ export default function DaftarPage() {
       }
 
       setSuccess('Pendaftaran berhasil! Silakan masuk.');
+      showToast('Pendaftaran berhasil!', 'success');
       setFormData({ name: '', email: '', password: '', confirmPassword: '' });
+      setTimeout(() => router.push('/login'), 2000);
     } catch (err) {
       setError(err.message);
+      showToast(err.message, 'error');
     } finally {
       setLoading(false);
     }

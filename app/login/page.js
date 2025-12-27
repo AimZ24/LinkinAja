@@ -4,11 +4,13 @@ import { Apple, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/context/ToastContext';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { showToast } = useToast();
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -39,10 +41,12 @@ export default function LoginPage() {
       }
 
       // Successful login
+      showToast('Selamat datang kembali!', 'success');
       router.push('/dashboard');
       router.refresh();
     } catch (err) {
       setError(err.message);
+      showToast(err.message, 'error');
     } finally {
       setLoading(false);
     }
