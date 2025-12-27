@@ -17,7 +17,7 @@ export async function GET() {
     const decoded = jwt.verify(token, JWT_SECRET);
     const userId = decoded.userId;
 
-    const user = db.prepare('SELECT name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color FROM users WHERE id = ?').get(userId);
+    const user = db.prepare('SELECT name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color, text_align FROM users WHERE id = ?').get(userId);
     
     return NextResponse.json(user);
   } catch (error) {
@@ -38,7 +38,7 @@ export async function POST(request) {
     const userId = decoded.userId;
 
     const data = await request.json();
-    const { name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color } = data;
+    const { name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color, text_align } = data;
 
     db.prepare(`
       UPDATE users SET 
@@ -53,9 +53,10 @@ export async function POST(request) {
         button_color = ?, 
         font_family = ?,
         title_color = ?,
-        bio_color = ?
+        bio_color = ?,
+        text_align = ?
       WHERE id = ?
-    `).run(name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color, userId);
+    `).run(name, bio, profile_image, theme, bg_type, bg_color, button_shape, button_style, button_color, font_family, title_color, bio_color, text_align, userId);
 
     return NextResponse.json({ message: 'Appearance and Profile updated' });
   } catch (error) {

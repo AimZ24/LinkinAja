@@ -210,7 +210,8 @@ export default function SettingsPage() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto w-full relative dash-scrollbar bg-dash-background-light">
+        <div className="flex-1 flex flex-col lg:flex-row h-full overflow-hidden">
+          <div className="flex-1 overflow-y-auto w-full relative dash-scrollbar bg-dash-background-light">
           <div className="max-w-2xl mx-auto px-6 py-10 md:py-14 space-y-8 pb-32">
             <div className="flex flex-col gap-2">
               <h1 className="text-slate-900 text-3xl md:text-4xl font-black tracking-[-0.033em]">Account Settings</h1>
@@ -410,6 +411,7 @@ export default function SettingsPage() {
             Updates automatically
           </p>
         </div>
+      </div>
       </main>
     </div>
   );

@@ -71,6 +71,7 @@ export default function AppearancePage() {
           setButtonColor(appearanceData.button_color || '#000000');
           setTitleColor(appearanceData.title_color || '#000000');
           setBioColor(appearanceData.bio_color || '#666666');
+          setTextAlign(appearanceData.text_align || 'center');
 
           // Parse gradient if exists
           if (appearanceData.bg_type === 'Gradient' && appearanceData.bg_color.includes('linear-gradient')) {
@@ -117,7 +118,8 @@ export default function AppearancePage() {
           button_color: buttonColor,
           font_family: 'Plus Jakarta Sans',
           title_color: titleColor,
-          bio_color: bioColor
+          bio_color: bioColor,
+          text_align: textAlign
         }),
       });
       
@@ -732,6 +734,17 @@ export default function AppearancePage() {
             </div>
           </div>
         </div>
+        
+        {/* Floating Save Bar for Mobile */}
+        <div className="fixed bottom-0 md:left-64 left-0 right-0 lg:hidden bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 z-30 transition-all">
+          <button 
+              onClick={handleSave}
+              disabled={saving}
+              className="w-full bg-dash-primary hover:bg-[#0fd650] text-black font-black py-4 px-6 rounded-2xl shadow-[0_8px_20px_rgba(19,236,91,0.2)] transition-all active:scale-95 uppercase tracking-[0.2em] text-xs"
+          >
+              {saving ? 'Saving...' : 'Publish Changes'}
+          </button>
+        </div>
 
         {/* Live Preview Sidebar */}
         <div className="hidden lg:flex w-[420px] xl:w-[480px] bg-slate-50 border-l border-slate-200 flex-col items-center justify-center p-8 shrink-0 relative">
@@ -834,6 +847,7 @@ export default function AppearancePage() {
             {saving ? 'Saving...' : 'Publish Changes'}
           </button>
         </div>
+      </div>
       </main>
     </div>
   );
